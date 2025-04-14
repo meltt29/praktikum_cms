@@ -1,18 +1,9 @@
 <?php
+use App\Http\Controllers\FilmController ;
+Route::resource('films', \App\Http\Controllers\FilmController::class);
 
-use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('films', \App\Http\Controllers\FilmController::class);
+Route::resource('genres', \App\Http\Controllers\GenreController::class);
+Route::resource('sutradaras', \App\Http\Controllers\SutradaraController::class);
+Route::resource('aktors', \App\Http\Controllers\AktorController::class);
+Route::resource('films', FilmController::class);
