@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ $film['judul'] }}</title>
-</head>
-<body>
-    <h1>{{ $film['judul'] }}</h1>
-    <p><strong>Tahun Rilis:</strong> {{ $film['tahun_rilis'] }}</p>
-    <p><strong>Sutradara:</strong> {{ $film['sutradara'] }}</p>
-    <p><strong>Genre:</strong> {{ implode(', ', $film['genre']) }}</p>
-    <p><strong>Aktor:</strong> {{ implode(', ', $film['aktor']) }}</p>
+@extends('layouts.app')
 
-    <p>
-        ✏️ <a href="{{ route('films.edit', $film['id']) }}">Edit</a> |
-        🗑 <form action="{{ route('films.destroy', $film['id']) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" onclick="return confirm('Yakin ingin menghapus film ini?')" style="background:none;border:none;color:blue;cursor:pointer;">Hapus</button>
-        </form>
-    </p>
+@section('title', 'Detail Film')
 
-    <p><a href="{{ route('films.index') }}">← Kembali ke daftar</a></p>
-</body>
-</html>
+@section('content')
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Judul:</strong> {{ $film['judul'] }}</li>
+        <li class="list-group-item"><strong>Tahun Rilis:</strong> {{ $film['tahun_rilis'] }}</li>
+        <li class="list-group-item"><strong>Sutradara:</strong> {{ $film['sutradara'] }}</li>
+        <li class="list-group-item"><strong>Genre:</strong> {{ implode(', ', $film['genre']) }}</li>
+        <li class="list-group-item"><strong>Aktor:</strong> {{ implode(', ', $film['aktor']) }}</li>
+    </ul>
+
+    <a href="{{ route('films.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+@endsection

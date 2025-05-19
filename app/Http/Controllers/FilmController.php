@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use Illuminate\Http\Request;
+
 class FilmController extends Controller
 {
     public function index()
@@ -18,7 +21,14 @@ class FilmController extends Controller
 
     public function create()
     {
-        return view('films.create', compact('film'));
+        return view('films.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->only(['judul', 'tahun_rilis', 'sutradara', 'genre', 'aktor']);
+
+        return redirect()->route('films.index')->with('success', 'Film berhasil ditambahkan (simulasi)');
     }
 
     public function edit($id)
@@ -27,23 +37,17 @@ class FilmController extends Controller
         return view('films.edit', compact('film'));
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        // Simulasi update hanya tampilkan request (karena data dummy)
-        // Di sistem nyata, ini akan update ke database
-
-        $data = request()->only(['judul', 'tahun_rilis', 'sutradara']);
-
-        // Bisa tambahkan validasi & logika lain jika perlu
+        $data = $request->only(['judul', 'tahun_rilis', 'sutradara', 'genre', 'aktor']);
 
         return redirect()->route('films.index')->with('success', 'Film berhasil diupdate (simulasi)');
     }
 
     public function destroy($id)
     {
-        // Karena ini data dummy, kita tidak bisa benar-benar menghapus
-        // Jadi kita buat simulasi saja
-        return redirect()->route('films.index')->with('success', 'Film berhasil dihapus (simulasi)');
-    }
 
+        return redirect()->route('films.index')->with('success', 'Film berhasil dihapus (simulasi)');
+
+    }
 }
