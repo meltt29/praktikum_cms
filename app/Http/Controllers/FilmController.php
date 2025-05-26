@@ -26,7 +26,15 @@ class FilmController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->only(['judul', 'tahun_rilis', 'sutradara', 'genre', 'aktor']);
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'tahun_rilis' => 'required|integer|min:1888|max:' . date('Y'),
+            'sutradara' => 'required|string|max:255',
+            'genre' => 'nullable|array',
+            'aktor' => 'nullable|array',
+        ]);
+
+        Film::create($validated);
 
         return redirect()->route('films.index')->with('success', 'Film berhasil ditambahkan (simulasi)');
     }

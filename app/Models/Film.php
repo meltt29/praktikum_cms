@@ -9,7 +9,7 @@ class Film
 {
     use HasFactory;
     // Data dummy film
-    protected static function getDummyData()
+    public static function getDummyData()
     {
         return [
             [
@@ -91,6 +91,14 @@ class Film
                 'sutradara' => 'David Fincher',
                 'genre' => ['Drama'],
                 'aktor' => ['Brad Pitt', 'Edward Norton']
+            ],
+             [
+                'id' => 11,
+                'judul' => 'Final Destination:Bloodlines',
+                'tahun_rilis' => 2024,
+                'sutradara' => 'John Doe',
+                'genre' => ['Horror', 'Thriller'],
+                'aktor' => ['Jane Smith', 'John Smith']
             ]
         ];
     }
