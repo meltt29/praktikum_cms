@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->year('tahun_rilis');
+            $table->integer('tahun_rilis');
             $table->string('sutradara');
             $table->json('genre')->nullable();
             $table->json('aktor')->nullable();

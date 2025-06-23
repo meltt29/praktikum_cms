@@ -5,6 +5,13 @@
 @section('content')
 
 <div class="px-3">
+     {{-- Pesan error handler --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first() }}
+        </div>
+    @endif
+    
     <a href="{{ route('films.create') }}" class="btn btn-success my-3">Tambah Film</a>
 
     <table class="table table-bordered align-middle text-center">
@@ -14,7 +21,7 @@
                 <th>Judul</th>
                 <th>Tahun Rilis</th>
                 <th>Sutradara</th>
-                <th>Aksi</th>
+                <th>Genre</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +31,7 @@
                     <td>{{ $film['judul'] }}</td>
                     <td>{{ $film['tahun_rilis'] }}</td>
                     <td>{{ $film['sutradara'] }}</td>
+                    <td>{{ $film['genre'] }}</td>
                     <td class="d-flex gap-1 justify-content-center">
                         <a href="{{ route('films.show', $film['id']) }}" class="btn btn-sm" style="background-color: #ADD8E6; color: black;">Lihat</a>
                         <a href="{{ route('films.edit', $film['id']) }}" class="btn btn-sm" style="background-color: #0D6EFD; color: white;">Edit</a>
