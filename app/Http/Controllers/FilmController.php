@@ -78,6 +78,6 @@ class FilmController extends Controller
         $film = Film::findOrFail($id);
         $film->delete();
 
-        return redirect()->route('films.index')->with('success', 'Film berhasil dihapus');
+        return redirect()->route('films.index')->with('success', 'Film berhasil dihapus,');
     }
 }

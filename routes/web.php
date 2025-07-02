@@ -21,4 +21,3 @@ Route::middleware('auth')->group(function () {
     Route::resource('films', FilmController::class);
     Route::resource('images', ImageController::class);
 });
-

@@ -5,13 +5,12 @@
 @section('content')
 
 <div class="px-3">
-     {{-- Pesan error handler --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             {{ $errors->first() }}
         </div>
     @endif
-    
+
     <a href="{{ route('films.create') }}" class="btn btn-success my-3">Tambah Film</a>
 
     <table class="table table-bordered align-middle text-center">
