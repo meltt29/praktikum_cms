@@ -222,7 +222,7 @@ class FilmController extends Controller
                 'file' => $e->getFile(),
                 'line' => $e->getLine()
             ]);
-            return redirect()->route('films.index')->withErrors('Terjadi error saat menghapus film.');
+            return redirect()->route('films.index')->withErrors('Terjadi error saat menghapus film!');
         }
     }
 }
