@@ -2,59 +2,79 @@
 
 @section('title', 'Tambah Film')
 
+@section('head')
+<!-- Select2 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
-    {{-- 1. Tampilkan pesan success --}}
-    @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-    @endif
+<div class="container d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card p-4 shadow-lg" style="max-width:500px;width:100%;background:#181818;">
+        <h2 class="fw-bold mb-4 text-center" style="color:#e50914;">Tambah Film</h2>
+        <form method="POST" action="{{ route('films.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label">Judul</label>
+                <input type="text" name="judul" class="form-control" value="{{ old('judul') }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tahun Rilis</label>
+                <input type="number" name="tahun_rilis" class="form-control" value="{{ old('tahun_rilis') }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sutradara</label>
+                <input type="text" name="sutradara" class="form-control" value="{{ old('sutradara') }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Genre</label>
+                <select name="genre[]" class="form-select select2" multiple required>
+                    <option value="Aksi">Aksi</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Komedi">Komedi</option>
+                    <option value="Romantis">Romantis</option>
+                    <option value="Horor">Horor</option>
+                    <option value="Animasi">Animasi</option>
+                    <option value="Petualangan">Petualangan</option>
+                    <option value="Fiksi Ilmiah">Fiksi Ilmiah</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Aktor</label>
+                <input type="text" name="aktor" class="form-control" value="{{ old('aktor') }}" placeholder="Pisahkan dengan koma jika lebih dari satu" required>
+                <small class="text-secondary">Contoh: Tom Hardy, Brad Pitt</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="4" required>{{ old('deskripsi') }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Rating</label>
+                <input type="number" name="rating" class="form-control" min="0" max="10" step="0.1" value="{{ old('rating') }}" required>
+                <small class="text-secondary">Nilai 0 - 10 (boleh desimal, contoh: 7.5)</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Poster (opsional)</label>
+                <input type="file" name="poster" class="form-control" accept="image/*">
+            </div>
+            <div class="d-flex gap-2 justify-content-center mt-4">
+                <button type="submit" class="btn btn-netflix px-4">Simpan</button>
+                <a href="{{ route('films.index') }}" class="btn btn-outline-light">Batal</a>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
 
-    {{-- 2. Tampilkan daftar error validasi --}}
-    @if($errors->any())
-      <div class="alert alert-danger">
-        <ul class="mb-0">
-          @foreach($errors->all() as $e)
-            <li>{{ $e }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
-
-    <form method="POST" action="{{ route('films.store') }}">
-        @csrf
-
-        <div class="mb-3">
-            <label class="form-label">Judul</label>
-            <input
-              type="text"
-              name="judul"
-              class="form-control"
-              value="{{ old('judul') }}"
-            >
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Tahun Rilis</label>
-            <input
-              type="number"
-              name="tahun_rilis"
-              class="form-control"
-              value="{{ old('tahun_rilis') }}"
-            >
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Sutradara</label>
-            <input
-              type="text"
-              name="sutradara"
-              class="form-control"
-              value="{{ old('sutradara') }}"
-            >
-        </div>
-
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('films.index') }}" class="btn btn-secondary">Batal</a>
-    </form>
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            tags: true,
+            theme: 'classic',
+            width: '100%'
+        });
+    });
+</script>
 @endsection

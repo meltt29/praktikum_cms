@@ -18,6 +18,10 @@ class Film extends Model
         'sutradara',
         'genre',
         'aktor',
+        'status',
+        'poster',
+        'deskripsi',
+        'rating',
     ];
 
     // Agar Laravel tahu bahwa genre dan aktor adalah array (JSON)
