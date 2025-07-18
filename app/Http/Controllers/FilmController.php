@@ -108,6 +108,8 @@ class FilmController extends Controller
                 'sutradara' => 'required|string|max:255',
                 'genre' => 'required|array',
                 'aktor' => 'required|array',
+                'deskripsi' => 'nullable|string',
+                'rating' => 'nullable|numeric|min:0|max:10',
                 'poster' => 'nullable|image|max:2048',
             ]);
 
@@ -170,6 +172,8 @@ class FilmController extends Controller
                 'sutradara' => 'required|string|max:255',
                 'genre' => 'required|array',
                 'aktor' => 'required|array',
+                'deskripsi' => 'nullable|string',
+                'rating' => 'nullable|numeric|min:0|max:10',
                 'poster' => 'nullable|image|max:2048',
             ]);
 
